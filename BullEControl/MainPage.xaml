@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BullEControl.MainPage"
+             Title="BullEControl">
+
+    <VerticalStackLayout Spacing="20" Padding="40"
+                         VerticalOptions="Center">
+
+        <Label Text="🤖 Control de Motor"
+               FontSize="28" FontAttributes="Bold"
+               HorizontalOptions="Center"/>
+
+        <Label x:Name="StatusLabel"
+               Text="⚙️ Desconectado"
+               FontSize="16"
+               HorizontalOptions="Center"/>
+
+        <Button Text="🔌 Conectar USB"
+                Clicked="OnConnectClicked"
+                BackgroundColor="#2196F3"
+                TextColor="White"
+                CornerRadius="10"/>
+
+        <Button x:Name="ForwardBtn"
+                Text="▶ AVANZAR"
+                Clicked="OnForwardClicked"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                CornerRadius="10"
+                IsEnabled="False"/>
+
+        <Button x:Name="BackwardBtn"
+                Text="◀ RETROCEDER"
+                Clicked="OnBackwardClicked"
+                BackgroundColor="#F44336"
+                TextColor="White"
+                CornerRadius="10"
+                IsEnabled="False"/>
+
+        <Button Text="⏹ Desconectar"
+                Clicked="OnDisconnectClicked"
+                BackgroundColor="#9E9E9E"
+                TextColor="White"
+                CornerRadius="10"/>
+    </VerticalStackLayout>
+</ContentPage>
