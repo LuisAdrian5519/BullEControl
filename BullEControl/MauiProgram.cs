@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BullEControl.Services;
+using Microsoft.Extensions.Logging;
 
 namespace BullEControl
 {
@@ -15,10 +16,14 @@ namespace BullEControl
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
+#if ANDROID
+            builder.Services.AddSingleton<IUsbMotorService, UsbMotorService>();
 #endif
+            builder.Services.AddSingleton<MainPage>();
 
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
             return builder.Build();
         }
     }

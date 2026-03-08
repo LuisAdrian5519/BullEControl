@@ -16,8 +16,8 @@ namespace BullEControl.Services
         private UsbDeviceConnection? _connection;
         private UsbEndpoint? _endpointOut;
 
-        private const int VENDOR_ID = 0x2341; // Arduino Uno
-        private const int PRODUCT_ID = 0x0043; // Arduino Uno
+        private const int VENDOR_ID = 0x1A86; // CH340
+        private const int PRODUCT_ID = 0x7523; // CH340
 
         public bool IsConnected => _connection != null;
 
