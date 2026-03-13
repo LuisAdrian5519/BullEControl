@@ -1,11 +1,5 @@
 ﻿using Android.Content;
 using Android.Hardware.Usb;
-using Microsoft.Maui.Controls.PlatformConfiguration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BullEControl.Services
 {
@@ -16,8 +10,8 @@ namespace BullEControl.Services
         private UsbDeviceConnection? _connection;
         private UsbEndpoint? _endpointOut;
 
-        private const int VENDOR_ID = 0x1A86; // CH340
-        private const int PRODUCT_ID = 0x7523; // CH340
+        private const int VENDOR_ID = 0x1A86;
+        private const int PRODUCT_ID = 0x7523;
 
         public bool IsConnected => _connection != null;
 
@@ -26,7 +20,10 @@ namespace BullEControl.Services
             _usbManager = (UsbManager)Android.App.Application.Context
                             .GetSystemService(Context.UsbService)!;
 
-            foreach (var device in _usbManager.DeviceList!.Values)
+            if (_usbManager.DeviceList == null || _usbManager.DeviceList.Count == 0)
+                return false;
+
+            foreach (var device in _usbManager.DeviceList.Values)
             {
                 if (device.VendorId == VENDOR_ID && device.ProductId == PRODUCT_ID)
                 {
@@ -36,6 +33,10 @@ namespace BullEControl.Services
             }
 
             if (_device == null) return false;
+
+            // Verificar permiso
+            if (!_usbManager.HasPermission(_device))
+                return false;
 
             var iface = _device.GetInterface(0);
             for (int i = 0; i < iface!.EndpointCount; i++)
