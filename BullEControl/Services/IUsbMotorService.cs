@@ -10,7 +10,7 @@ namespace BullEControl.Services
     {
         bool Connect();
         void Disconnect();
-        bool SendCommand(byte command);
+        bool SendCommand(string command);
         bool IsConnected { get; }
     }
 }

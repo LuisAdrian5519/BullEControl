@@ -18,7 +18,7 @@ public partial class MainPage : ContentPage
     private const string ACTION_USB_PERMISSION = "com.bullecontrol.USB_PERMISSION";
 
     private BroadcastReceiver? _usbPermissionReceiver;
-#endif
+#endif 
 
     public MainPage(IUsbMotorService usbService)
     {
@@ -94,15 +94,13 @@ public partial class MainPage : ContentPage
 
     void OnForwardClicked(object s, EventArgs e)
     {
-        // Sends ASCII '1' (0x31)
-        bool ok = _usbService.SendCommand(0x31);
+        bool ok = _usbService.SendCommand("2"); // Avanzar
         StatusLabel.Text = ok ? "▶ Avanzando..." : "❌ Error al enviar";
     }
 
     void OnBackwardClicked(object s, EventArgs e)
     {
-        // Sends ASCII '0' (0x30)
-        bool ok = _usbService.SendCommand(0x30);
+        bool ok = _usbService.SendCommand("3"); // Retroceder
         StatusLabel.Text = ok ? "◀ Retrocediendo..." : "❌ Error al enviar";
     }
 
